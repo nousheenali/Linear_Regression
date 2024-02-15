@@ -26,15 +26,16 @@ exclusively to the differences between dependent variables and estimations from 
 
 
 
-        The equation of a simple linear regression model is:
+The equation of a simple linear regression model is:
 
-        y = mx + c
+        y = mx + b
         where:  y = dependent variable
                 x = independent variable
                 m = slope of the line
-                c = y-intercept
+                b = y-intercept
 
-        The equation of a multiple linear regression model is:
+
+The equation of a multiple linear regression model is:
 
         y = b0 + b1x1 + b2x2 + ... + bnxn
         where:  y = dependent variable
@@ -43,21 +44,39 @@ exclusively to the differences between dependent variables and estimations from 
                 b1, b2, ..., bn = coefficients
 
         - The coefficients are the values that minimize the sum of the squared residuals.
-        * The y-intercept is the value of y when all the independent variables are 0.
+        - The y-intercept is the value of y when all the independent variables are 0.
 
 ## Gradient Descent
 
-Gradient Descent is an optimization algorithm used to minimize the cost function in machine learning.
-The cost function measures the difference between the actual and predicted values.
+Gradient Descent is an optimization algorithm used to minimize the cost function in machine learning. The cost function measures the difference between the actual and predicted values.
 The goal of gradient descent is to find the values of the coefficients that minimize the cost function.
 
+<img width="250" alt="MSE" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/db7000a0-f912-441d-bf23-5983e0f4dcbc">
+
+where ŷ is the predicted value. The above formula can therefore be re-written as:
+
+<img width="300" alt="function with parameters" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/4754e2fb-5011-426f-ac5e-35fb0902e09c">
+
+To find how each parameter affects the MSE, we need to find the partial derivatives with respect to m and b
+
+<img width="712" alt="partial derivatives" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/2a685a80-2f15-4b2a-9209-479cf5c4d58a">
+
+> [!NOTE]  
+> Partial Derivatives gives the instantanious slope of a point on a curve. Each derived function can tell which way we should tune parameters and by how much.
+
+We update parameters(m and b) by iterating through our derived functions and gradually minimizing MSE. In this process, we use an additional parameter **learning rate**
+which helps us define the step we take towards updating parameters with each iteration. 
+
+        m = m - learning_rate * ∂f/∂m
+
+        b = b - learning_rate * ∂f/∂b
+
+
+STEPS:
 - The algorithm starts with initial values for the coefficients. In our case we set it to zero.
     slope    m = 0
     y-intercept    c = 0
-- Calclate the 
-
-
-
+- Calclate the
 
 
 The coefficient of determination (R-squared) is a measure of how well the model fits the data.
@@ -83,4 +102,6 @@ Reference: https://www.youtube.com/watch?v=nk2CQITm_eo
 
 REFERENCES:
 https://www.analyticsvidhya.com/blog/2021/10/everything-you-need-to-know-about-linear-regression/
+https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc
+
 """
