@@ -1,53 +1,52 @@
-# Linear_Regression
+## LINEAR REGRESSION
 
-"""
-JUPYTER NOTEBOOK SUPPORT IN VS CODE
-https://www.youtube.com/watch?v=h1sAzPojKMg
-https://devblogs.microsoft.com/python/announcing-support-for-native-editing-of-jupyter-notebooks-in-vs-code/
-"""
-
-"""
-
-Linear Regression is a statistical method that models the relationship between two variables.
+**LINEAR REGRESSION** is a statistical method that models the relationship between two variables.
 It is used to predict the value of a dependent variable based on one or more independent variables.
 
-Residuals: The difference between the actual value and the predicted value is called the residual.
+The difference between the actual value and the predicted value is called the **residual**.
 The residual is the error in the prediction.
 
         residual = actual - predicted
 
-The goal of linear regression is to minimize the sum of the squared residuals for each data point.
+> [!IMPORTANT] 
+>The goal of linear regression is to minimize the sum of the squared residuals for each data point.
 The line that minimizes the sum of the squared residuals is called the line of best fit.
 
-  squared_residuals = sum((actual - predicted) ** 2)
-  mean_squared_error = sum((actual - predicted) ** 2) / n
-
-NOTE: Errors and Residues are completely different concepts. Errors mainly refer to difference
-between actual observed sample values and your predicted values. In contrast, residues refer
-exclusively to the differences between dependent variables and estimations from linear regression.
+        squared_residuals = sum((actual - predicted) ** 2)
+        mean_squared_error = sum((actual - predicted) ** 2) / n
 
 Squared residuals and mean squared error are used to evaluate the performance of the model.
 These metrics measure the difference between the actual and predicted values. 
 The smaller the value, the better the model.
 
-The equation of a simple linear regression model is:
+> [!NOTE]  
+> Errors and Residues are completely different concepts. Errors mainly refer to difference
+between actual observed sample values and your predicted values. In contrast, residues refer
+exclusively to the differences between dependent variables and estimations from linear regression.
+
+
+
+        The equation of a simple linear regression model is:
+
         y = mx + c
         where:  y = dependent variable
                 x = independent variable
                 m = slope of the line
                 c = y-intercept
 
-The equation of a multiple linear regression model is:
-y = b0 + b1x1 + b2x2 + ... + bnxn
-where:  y = dependent variable
-        x1, x2, ..., xn = independent variables
-        b0 = y-intercept
-        b1, b2, ..., bn = coefficients
+        The equation of a multiple linear regression model is:
 
-The coefficients are the values that minimize the sum of the squared residuals.
-The y-intercept is the value of y when all the independent variables are 0.
+        y = b0 + b1x1 + b2x2 + ... + bnxn
+        where:  y = dependent variable
+                x1, x2, ..., xn = independent variables
+                b0 = y-intercept
+                b1, b2, ..., bn = coefficients
 
-##Gradient Descent
+        - The coefficients are the values that minimize the sum of the squared residuals.
+        * The y-intercept is the value of y when all the independent variables are 0.
+
+## Gradient Descent
+
 Gradient Descent is an optimization algorithm used to minimize the cost function in machine learning.
 The cost function measures the difference between the actual and predicted values.
 The goal of gradient descent is to find the values of the coefficients that minimize the cost function.
