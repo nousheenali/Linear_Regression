@@ -6,9 +6,7 @@ It is used to predict the value of a dependent variable based on one or more ind
 The difference between the actual value and the predicted value is called the **residual**.
 The residual is the error in the prediction.
 
-        residual = actual - predicted
-
-<img width="400" alt="LINEAR REGRESSION" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/23baf4fb-8aee-4445-b4a6-1585fb81ec97"/>
+<p align="center"><img width="600" alt="LINEAR REGRESSION" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/23baf4fb-8aee-4445-b4a6-1585fb81ec97"/></p>
 
 
 > [!IMPORTANT] 
@@ -53,10 +51,20 @@ The equation of a multiple linear regression model is:
 
 Gradient Descent is an optimization algorithm used to find optimum coefficient(slope and y-intercept) values that minimize the cost function in machine learning. The cost function measures the difference between the actual and predicted values.
 
-![gradientdescent](https://github.com/nousheenali/Linear_Regression/assets/66158938/597aac7b-f39a-42a8-a971-9fd3eb52bada)
 
-1. Start with initial values for the slope (theta1) and intercept (theta0). 
-2. Use the current values of theta1 and theta0 to calculate the cost function.
+[<img width="600" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/597aac7b-f39a-42a8-a971-9fd3eb52bada">](https://machine-learning.paperspace.com/wiki/gradient-descent)
+
+
+To train your algorithm with gradient descent to minimize our cost-function f(m, b) and reach its local minimum by tweaking its parameters (m and b). The image above shows the horizontal axes representing the parameters (m and b), while the cost function f(m, b) is represented on the vertical axes. Gradient descent is a convex function. We start by initializing m and b with some random numbers. Gradient descent then starts at that point (somewhere around the top of our illustration), and it takes one step after another in the steepest downside direction (i.e., from the top to the bottom of the illustration) until it reaches the point where the cost function is as small as possible.
+
+The size of the steps taken by gradient descent in the direction of the local minimum is determined by the learning rate. To ensure the gradient descent algorithm converges to the local minimum, it is crucial to set the learning rate to an appropriate value—neither too low nor too high. If the steps are excessively large, the algorithm might oscillate and fail to reach the local minimum within the convex function. Conversely, a very small learning rate will eventually lead to convergence, but the process may be time-consuming. Finding a balanced learning rate is essential for the effectiveness of the gradient descent optimization.
+
+
+
+# Steps to find optimal coefficients using gradient descent:
+
+1. Start with initial values for the slope (m) and intercept (b). 
+2. Use the current values of m and b to calculate the cost function.
 <p align="center">
         <img width="250" alt="MSE" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/db7000a0-f912-441d-bf23-5983e0f4dcbc">
         <p align="center">where ŷ is the predicted value. The above formula can therefore be re-written as:</p>
@@ -65,36 +73,25 @@ Gradient Descent is an optimization algorithm used to find optimum coefficient(s
 <img width="300" alt="function with parameters" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/4754e2fb-5011-426f-ac5e-35fb0902e09c">
 </p>
 
-3. Calculate the gradient of the cost function with respect to each parameter (theta1 and theta0). The gradient points in the direction of the steepest increase of the cost function.
+3. Calculate the gradient of the cost function with respect to each parameter (m and b). The gradient points in the direction of the steepest increase of the cost function.
 
-To find how each parameter affects the MSE, we need to find the partial derivatives with respect to m and b
+        
 <p align="center">
+        <text>To find how each parameter affects the MSE, we need to find the partial derivatives with respect to m and b</text>
 <img width="712" alt="partial derivatives" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/2a685a80-2f15-4b2a-9209-479cf5c4d58a">
 </p>
-4. Update the parameters (theta1 and theta0) by moving in the opposite direction of the gradient. This is done to decrease the cost function.
-5. Repeat steps 2 and 3 until convergence or a predetermined number of iterations. Convergence is typically determined by observing a small change in the cost function or when the algorithm reaches a specified number of iterations.
-
-
-
-
-
 
 > [!NOTE]  
 > Partial Derivatives gives the instantanious slope of a point on a curve. Each derived function can tell which way we should tune parameters and by how much.
 
-We update parameters(m and b) by iterating through our derived functions and gradually minimizing MSE. In this process, we use an additional parameter **learning rate**
-which helps us define the step we take towards updating parameters with each iteration. 
+4. Update the parameters(m and b) by iterating through our derived functions and gradually minimizing MSE. In this process, we use an additional parameter **learning rate** which helps us define the step we take towards updating parameters with each iteration. 
 
         m = m - learning_rate * ∂f/∂m
 
         b = b - learning_rate * ∂f/∂b
 
 
-STEPS:
-- The algorithm starts with initial values for the coefficients. In our case we set it to zero.
-    slope    m = 0
-    y-intercept    c = 0
-- Calclate the
+5. Repeat steps 2, 3 and 4 until convergence or a predetermined number of iterations. Convergence is typically determined by observing a small change in the cost function or when the algorithm reaches a specified number of iterations.
 
 
 The coefficient of determination (R-squared) is a measure of how well the model fits the data.
@@ -115,11 +112,13 @@ If the p-value is greater than the significance level, the null hypothesis is no
 The p-value for each independent variable tests the null hypothesis that the variable has no effect on the dependent variable.
 If the p-value is less than the significance level, the variable has a significant effect on the dependent variable.
 
-Reference: https://www.youtube.com/watch?v=nk2CQITm_eo
 
 
 REFERENCES:
-https://www.analyticsvidhya.com/blog/2021/10/everything-you-need-to-know-about-linear-regression/
-https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc
+- [Everything you need to Know about Linear Regression!](https://www.analyticsvidhya.com/blog/2021/10/everything-you-need-to-know-about-linear-regression/)
+- [Linear Regression](https://www.youtube.com/watch?v=nk2CQITm_eo)
+- [Gradient Descent and Cost Function](https://www.youtube.com/watch?v=vsWrXfO3wWw)
+- [Gradient Descent From Scratch](https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc)
+- [Gradient Descent in Machine Learning](https://builtin.com/data-science/gradient-descent)
 
-"""
+
