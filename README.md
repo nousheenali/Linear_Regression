@@ -1,10 +1,10 @@
 ## LINEAR REGRESSION
 
-**LINEAR REGRESSION** is a statistical method that models the relationship between two variables.
+LINEAR REGRESSION is a statistical method that models the relationship between two variables.
 It is used to predict the value of a dependent variable based on one or more independent variables.
 
-The difference between the actual value and the predicted value is called the **residual**.
-The residual is the error in the prediction.
+The difference between the actual value and the predicted value is called the **residual**.The residual is the error in the prediction.
+The line that minimizes the sum of the squared residuals is called the **Best Fit Line**. 
 
 <p align="center"><img width="600" alt="LINEAR REGRESSION" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/23baf4fb-8aee-4445-b4a6-1585fb81ec97"/></p>
 
@@ -12,8 +12,7 @@ The residual is the error in the prediction.
 > [!IMPORTANT] 
 >The goal of linear regression is to minimize the sum of the squared residuals for each data point.
 
-
-The line that minimizes the sum of the squared residuals is called the **best fit line**. There are various ways to calculate the cost function(loss):
+There are various ways to calculate the cost function(loss):
 
         squared_residuals = sum((actual - predicted) ** 2)
         mean_squared_error = sum((actual - predicted) ** 2) / n
@@ -55,7 +54,7 @@ Gradient Descent is an optimization algorithm used to find optimum coefficient(s
 [<img width="600" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/597aac7b-f39a-42a8-a971-9fd3eb52bada">](https://machine-learning.paperspace.com/wiki/gradient-descent)
 
 
-To train your algorithm with gradient descent to minimize our cost-function f(m, b) and reach its local minimum by tweaking its parameters (m and b). The image above shows the horizontal axes representing the parameters (m and b), while the cost function f(m, b) is represented on the vertical axes. Gradient descent is a convex function. We start by initializing m and b with some random numbers. Gradient descent then starts at that point (somewhere around the top of our illustration), and it takes one step after another in the steepest downside direction (i.e., from the top to the bottom of the illustration) until it reaches the point where the cost function is as small as possible.
+We use gradient descent algorithm to minimize our cost-function f(m, b) and reach its local minimum by tweaking its parameters (m and b). The image above shows the horizontal axes representing the parameters (m and b), while the cost function f(m, b) is represented on the vertical axes. We start by initializing m and b with some random numbers. Gradient descent then starts at that point (somewhere around the top of our illustration), and it takes one step after another in the steepest downside direction (i.e., from the top to the bottom of the illustration) until it reaches the point where the cost function is as small as possible.
 
 The size of the steps taken by gradient descent in the direction of the local minimum is determined by the learning rate. To ensure the gradient descent algorithm converges to the local minimum, it is crucial to set the learning rate to an appropriate value—neither too low nor too high. If the steps are excessively large, the algorithm might oscillate and fail to reach the local minimum within the convex function. Conversely, a very small learning rate will eventually lead to convergence, but the process may be time-consuming. Finding a balanced learning rate is essential for the effectiveness of the gradient descent optimization.
 
