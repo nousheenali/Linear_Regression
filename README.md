@@ -61,7 +61,7 @@ The size of the steps taken by gradient descent in the direction of the local mi
 
 
 
-# Steps to find optimal coefficients using gradient descent:
+### Steps to find optimal coefficients using gradient descent:
 
 1. Start with initial values for the slope (m) and intercept (b). 
 2. Use the current values of m and b to calculate the cost function.
@@ -93,25 +93,22 @@ The size of the steps taken by gradient descent in the direction of the local mi
 
 5. Repeat steps 2, 3 and 4 until convergence or a predetermined number of iterations. Convergence is typically determined by observing a small change in the cost function or when the algorithm reaches a specified number of iterations.
 
+## Coefficient of Determination or R-squared
 
 The coefficient of determination (R-squared) is a measure of how well the model fits the data.
-It is the proportion of the variance in the dependent variable that is predictable from the independent variables.
+
 If R-squared is 1, the model perfectly predicts the dependent variable.
+
 If R-squared is 0, the model does not predict the dependent variable at all.
 
+[<img width="600" alt="Screen Shot 2024-02-18 at 1 31 39 AM" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/75bb6433-c441-458e-88a5-4b0bd972b8f9"/>](https://www.analyticsvidhya.com/blog/2021/10/everything-you-need-to-know-about-linear-regression/)
+
 formula for R-squared:
-R-squared = 1 - (sum of squared residuals / sum of squared differences from the mean)
-sum of squared residuals = sum((actual - predicted) ** 2)
-sum of squared differences from the mean = sum((actual - mean) ** 2)
-
-p-value: A p-value is the probability that the null hypothesis is true.
-null hypothesis: The null hypothesis is a general statement that there is no relationship between two measured phenomena.
-If the p-value is less than the significance level (usually 0.05), the null hypothesis is rejected.
-If the p-value is greater than the significance level, the null hypothesis is not rejected.
-
-The p-value for each independent variable tests the null hypothesis that the variable has no effect on the dependent variable.
-If the p-value is less than the significance level, the variable has a significant effect on the dependent variable.
-
+        
+        R-squared = 1 - (sum of squared residuals / sum of squared differences from the mean)
+        
+        sum of squared residuals = sum((actual - predicted) ** 2)
+        sum of squared differences from the mean = sum((actual - mean) ** 2)
 
 
 REFERENCES:
@@ -121,5 +118,6 @@ REFERENCES:
 - [Gradient Descent From Scratch](https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc)
 - [Gradient Descent in Machine Learning](https://builtin.com/data-science/gradient-descent)
 - [Derivative as a Concept](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-concept)
+- [How to Calculate R squared in Linear Regression](https://www.shiksha.com/online-courses/articles/how-to-calculate-r-squared-in-linear-regression/#What-is-R-squared?)
 
 
