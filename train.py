@@ -23,7 +23,7 @@ def gradient_descent(x, y):
     theta1 = 0  # slope
     num_iters = 1000  # number of iterations
     m = len(y)  # number of data points
-    learning_rate = 0.1  # hyperparameter
+    learning_rate = 0.9  # hyperparameter
     plt.scatter(x, y, color='red')  # Plot normalised data points
 
     # Gradient Descent iterations for different values of theta0 and theta1
@@ -47,8 +47,8 @@ def gradient_descent(x, y):
     print("theta0: {}, theta1: {}, loss: {}".format(theta0, theta1, loss))
     plt.xlabel('Mileage')
     plt.ylabel('Price')
-    plt.title('Lines for each iteration of gradient descent')
-    # plt.show()
+    plt.title('Fit Lines for each iteration of gradient descent')
+    plt.show()
     return theta0, theta1
 
 
