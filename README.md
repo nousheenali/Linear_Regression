@@ -10,7 +10,7 @@ The residual is the error in the prediction.
 
 > [!IMPORTANT] 
 >The goal of linear regression is to minimize the sum of the squared residuals for each data point.
-The line that minimizes the sum of the squared residuals is called the line of best fit.
+The line that minimizes the sum of the squared residuals is called the **best fit line**. There
 
         squared_residuals = sum((actual - predicted) ** 2)
         mean_squared_error = sum((actual - predicted) ** 2) / n
