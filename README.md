@@ -10,14 +10,12 @@ The residual is the error in the prediction.
 
 > [!IMPORTANT] 
 >The goal of linear regression is to minimize the sum of the squared residuals for each data point.
-The line that minimizes the sum of the squared residuals is called the **best fit line**. There
+The line that minimizes the sum of the squared residuals is called the **best fit line**. There are various ways to calculate the cost function(loss):
 
         squared_residuals = sum((actual - predicted) ** 2)
         mean_squared_error = sum((actual - predicted) ** 2) / n
 
-Squared residuals and mean squared error are used to evaluate the performance of the model.
-These metrics measure the difference between the actual and predicted values. 
-The smaller the value, the better the model.
+Squared residuals and mean squared error are used to evaluate the performance of the model. These metrics measure the difference between the actual and predicted values. The smaller the value, the better the model.
 
 > [!NOTE]  
 > Errors and Residues are completely different concepts. Errors mainly refer to difference

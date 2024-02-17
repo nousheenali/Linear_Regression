@@ -48,7 +48,7 @@ def gradient_descent(x, y):
     plt.xlabel('Mileage')
     plt.ylabel('Price')
     plt.title('Fit Lines for each iteration of gradient descent')
-    plt.show()
+    # plt.show()
     return theta0, theta1
 
 
