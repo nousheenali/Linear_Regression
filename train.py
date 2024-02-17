@@ -80,7 +80,7 @@ def print_result(price):
     print("--------------------------------------------")
 
 
-def r_sqaure(X, y, theta0, theta1, X_norm):
+def r_sqaured(X, y, theta0, theta1, X_norm):
     """Calculate the R-squared value/Coefficient of determination
     formula: 1 - (SSR/SST)
     SSR: sum of squared residuals (sum of squared errors)
@@ -131,7 +131,7 @@ def train_model(path_to_csv_file, mil):
         print_result(denormalised_price)
 
         # r-squared
-        r_sqaure(X, y, theta0, theta1, X_norm)
+        r_sqaured(X, y, theta0, theta1, X_norm)
 
         # plot the graph
         plot_graph(X_norm, theta0, theta1, X, y)
