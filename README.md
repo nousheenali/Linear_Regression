@@ -8,8 +8,13 @@ The residual is the error in the prediction.
 
         residual = actual - predicted
 
+<img width="400" alt="LINEAR REGRESSION" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/23baf4fb-8aee-4445-b4a6-1585fb81ec97"/>
+
+
 > [!IMPORTANT] 
 >The goal of linear regression is to minimize the sum of the squared residuals for each data point.
+
+
 The line that minimizes the sum of the squared residuals is called the **best fit line**. There are various ways to calculate the cost function(loss):
 
         squared_residuals = sum((actual - predicted) ** 2)
@@ -46,18 +51,33 @@ The equation of a multiple linear regression model is:
 
 ## Gradient Descent
 
-Gradient Descent is an optimization algorithm used to minimize the cost function in machine learning. The cost function measures the difference between the actual and predicted values.
-The goal of gradient descent is to find the values of the coefficients that minimize the cost function.
+Gradient Descent is an optimization algorithm used to find optimum coefficient(slope and y-intercept) values that minimize the cost function in machine learning. The cost function measures the difference between the actual and predicted values.
 
-<img width="250" alt="MSE" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/db7000a0-f912-441d-bf23-5983e0f4dcbc">
+![gradientdescent](https://github.com/nousheenali/Linear_Regression/assets/66158938/597aac7b-f39a-42a8-a971-9fd3eb52bada)
 
-where ŷ is the predicted value. The above formula can therefore be re-written as:
-
+1. Start with initial values for the slope (theta1) and intercept (theta0). 
+2. Use the current values of theta1 and theta0 to calculate the cost function.
+<p align="center">
+        <img width="250" alt="MSE" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/db7000a0-f912-441d-bf23-5983e0f4dcbc">
+        <p align="center">where ŷ is the predicted value. The above formula can therefore be re-written as:</p>
+</p>
+<p align="center">
 <img width="300" alt="function with parameters" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/4754e2fb-5011-426f-ac5e-35fb0902e09c">
+</p>
+
+3. Calculate the gradient of the cost function with respect to each parameter (theta1 and theta0). The gradient points in the direction of the steepest increase of the cost function.
 
 To find how each parameter affects the MSE, we need to find the partial derivatives with respect to m and b
-
+<p align="center">
 <img width="712" alt="partial derivatives" src="https://github.com/nousheenali/Linear_Regression/assets/66158938/2a685a80-2f15-4b2a-9209-479cf5c4d58a">
+</p>
+4. Update the parameters (theta1 and theta0) by moving in the opposite direction of the gradient. This is done to decrease the cost function.
+5. Repeat steps 2 and 3 until convergence or a predetermined number of iterations. Convergence is typically determined by observing a small change in the cost function or when the algorithm reaches a specified number of iterations.
+
+
+
+
+
 
 > [!NOTE]  
 > Partial Derivatives gives the instantanious slope of a point on a curve. Each derived function can tell which way we should tune parameters and by how much.
