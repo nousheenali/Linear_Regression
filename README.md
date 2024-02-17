@@ -120,5 +120,6 @@ REFERENCES:
 - [Gradient Descent and Cost Function](https://www.youtube.com/watch?v=vsWrXfO3wWw)
 - [Gradient Descent From Scratch](https://towardsdatascience.com/gradient-descent-from-scratch-e8b75fa986cc)
 - [Gradient Descent in Machine Learning](https://builtin.com/data-science/gradient-descent)
+- [Derivative as a Concept](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-concept)
 
 
