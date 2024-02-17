@@ -1,32 +1,27 @@
-import numpy as np
-import pandas as pd 
+
+from train import train_model, estimate_price
 
 
-def gradient_descent(X, y, theta0, theta1, num_iters):
-    m = len(y)
-    for i in range(num_iters):
-        y_pred = theta0 + theta1 * X
-        cost = (1 / (2 * m)) * np.sum((y_pred - y) ** 2)
-        d_theta0 = (1 / m) * np.sum(y_pred - y)
-        d_theta1 = (1 / m) * np.sum((y_pred - y) * X)
-        theta0 = theta0 - 0.01 * d_theta0
-        theta1 = theta1 - 0.01 * d_theta1
-        print(f"theta0: {theta0} | theta1: {theta1} | cost: {cost} | iteration: {i}
+def predict():
+    """
+    Main function to take input from the user and predict the price
+    of a car given its mileage"""
+    try:
+        # Taking input from the user
+        mil = float(input("Enter Mileage to predict Price: "))
+        if mil < 0:
+            raise ValueError("Invlaid input value.")
+        price = estimate_price(mil)
+        print("Estimated price from trained model: {:.2f}".format(price))
+
+        price = train_model('./data.csv', mil)
+        print("--------------------------------------------")
+        print("Estimated price from trained model: {:.2f}".format(price))
+        print("--------------------------------------------")
+
+    except Exception as e:
+        print(type(e).__name__ + ": " + str(e))
 
 
-    
-
-
-def main():
-    df = pd.read_csv("data.csv")
-    y = df.drop('km', axis=1)
-    X = df.drop('price', axis=1)
-    theta0 = 0
-    theta1 = 0
-    gradient_descent(X, y, theta0, theta1, 1000)
-
- 
-    
-          
 if __name__ == "__main__":
-    main()
+    predict()
