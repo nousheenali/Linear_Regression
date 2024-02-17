@@ -13,14 +13,14 @@ def predict():
             raise ValueError("Invlaid input value.")
         price = estimate_price(mil)
         print("Estimated price from trained model: {:.2f}".format(price))
-
-        price = train_model('./data.csv', mil)
-        print("--------------------------------------------")
-        print("Estimated price from trained model: {:.2f}".format(price))
-        print("--------------------------------------------")
+        train_model('./data.csv', mil)
 
     except Exception as e:
         print(type(e).__name__ + ": " + str(e))
+        exit(1)
+    except KeyboardInterrupt:
+        print("Exiting...")
+        exit(1)
 
 
 if __name__ == "__main__":

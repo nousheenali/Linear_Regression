@@ -24,7 +24,7 @@ def gradient_descent(x, y):
     num_iters = 1000  # number of iterations
     m = len(y)  # number of data points
     learning_rate = 0.9  # hyperparameter
-    plt.scatter(x, y, color='red')  # Plot normalised data points
+    # plt.scatter(x, y, color='red')  # Plot normalised data points
 
     # Gradient Descent iterations for different values of theta0 and theta1
     for i in range(num_iters):
@@ -33,7 +33,7 @@ def gradient_descent(x, y):
         loss = (1/m) * sum([val**2 for val in (y - y_pred)])
 
         # Plot the line for each iteration
-        plt.plot(x, y_pred, color='green')
+        # plt.plot(x, y_pred, color='green')
 
         # Derivative of the loss function wrt theta0 and theta1
         # multiplied by the learning rate
@@ -45,10 +45,7 @@ def gradient_descent(x, y):
         theta1 = theta1 - tmp_theta1
 
     print("theta0: {}, theta1: {}, loss: {}".format(theta0, theta1, loss))
-    plt.xlabel('Mileage')
-    plt.ylabel('Price')
-    plt.title('Fit Lines for each iteration of gradient descent')
-    # plt.show()
+    print("--------------------------------------------")
     return theta0, theta1
 
 
@@ -57,14 +54,46 @@ def normalize_data(value, data):
     return (value - data.min()) / (data.max() - data.min())
 
 
-def plot_graph(X, y, theta0, theta1):
+def denormalize_data(value, data):
+    """Denormalize the data to get the actual value"""
+    return (value * (data.max() - data.min())) + data.min()
+
+
+def plot_graph(X_norm, theta0, theta1, X, y):
     """Plot the graph with the best fit line"""
     plt.scatter(X, y, color='red')
-    plt.plot(X, theta0 + (theta1 * X), color='blue')
+    y_pred = estimate_price(X_norm, theta0, theta1)
+    y_denomralized = denormalize_data(y_pred, y)
+    plt.plot(X, y_denomralized, color='blue')
     plt.xlabel('Mileage')
     plt.ylabel('Price')
     plt.title('Best fit line')
     plt.show()
+
+
+def print_result(price):
+    """Print the estimated price of the car"""
+    # After a certain mileage, price will be zero
+    if price < 0:
+        price = 0
+    print("Estimated price from trained model: {:.2f}".format(price))
+    print("--------------------------------------------")
+
+
+def r_sqaure(X, y, theta0, theta1, X_norm):
+    """Calculate the R-squared value/Coefficient of determination
+    formula: 1 - (SSR/SST)
+    SSR: sum of squared residuals (sum of squared errors)
+    SST: total sum of squares (sum of squared deviations from the mean)
+    """
+    y_mean = np.mean(y)
+    y_pred = estimate_price(X_norm, theta0, theta1)
+    denorm_y_pred = denormalize_data(y_pred, y)
+    ssr = sum((y - denorm_y_pred) ** 2)
+    sst = sum((y - y_mean) ** 2)
+    r_square = 1 - (ssr / sst)
+    print("R-square: ", r_square)
+    print("--------------------------------------------")
 
 
 def train_model(path_to_csv_file, mil):
@@ -97,14 +126,19 @@ def train_model(path_to_csv_file, mil):
         normalised_mil = normalize_data(mil, X)
         price = estimate_price(normalised_mil, theta0, theta1)
 
-        # plot the graph
-        # plot_graph(X_norm, y_norm, theta0, theta1)
-
         # Denormalizing the price to get the actual price
-        denormalised_price = (price * (y.max() - y.min())) + y.min()
-        if denormalised_price < 0:
-            return 0
-        return denormalised_price
+        denormalised_price = denormalize_data(price, y)
+        print_result(denormalised_price)
+
+        # r-squared
+        r_sqaure(X, y, theta0, theta1, X_norm)
+
+        # plot the graph
+        plot_graph(X_norm, theta0, theta1, X, y)
 
     except Exception as e:
         print(type(e).__name__ + ": " + str(e))
+        exit(1)
+    except KeyboardInterrupt:
+        print("Exiting...")
+        exit(1)
