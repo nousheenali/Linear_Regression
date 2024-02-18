@@ -1,18 +1,18 @@
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
+from precision import r_sqaured
+from utils import (
+    estimate_price,
+    denormalize_data,
+    normalize_data,
+    plot_graph,
+    print_result
+)
+from animation import gradient_descent_animation
 
 
-# default values for theta0 and theta1 are 0
-def estimate_price(mileage, theta0=0, theta1=0):
-    """
-    Estimate the price of a car given its mileage
-    The formula represents a straight line: y = theta0 + (theta1 * x)
-    """
-    return theta0 + (theta1 * mileage)
-
-
-def gradient_descent(x, y):
+def gradient_descent(x, y, ax0):
     """
     Train the model using gradient descent to get the optimal values of
     theta0 and theta1 by minimizing the loss function (Mean Squared Error
@@ -24,6 +24,9 @@ def gradient_descent(x, y):
     num_iters = 1000  # number of iterations
     m = len(y)  # number of data points
     learning_rate = 0.9  # hyperparameter
+
+    ax0.scatter(x, y, color='red')  # Plot normalised data points
+
     # plt.scatter(x, y, color='red')  # Plot normalised data points
 
     # Gradient Descent iterations for different values of theta0 and theta1
@@ -33,7 +36,7 @@ def gradient_descent(x, y):
         loss = (1/m) * sum([val**2 for val in (y - y_pred)])
 
         # Plot the line for each iteration
-        # plt.plot(x, y_pred, color='green')
+        ax0.plot(x, y_pred, color='green')
 
         # Derivative of the loss function wrt theta0 and theta1
         # multiplied by the learning rate
@@ -44,56 +47,15 @@ def gradient_descent(x, y):
         theta0 = theta0 - tmp_theta0
         theta1 = theta1 - tmp_theta1
 
+    ax0.set_xlabel('Normalised Mileage')
+    ax0.set_ylabel('Normalised Price')
+    ax0.set_title(
+        'Best Fit lines for different Gradient Descent iterations',
+        fontsize=10)
+    ax0.legend(['Data points', 'Best fit lines'])
     print("theta0: {}, theta1: {}, loss: {}".format(theta0, theta1, loss))
     print("--------------------------------------------")
     return theta0, theta1
-
-
-def normalize_data(value, data):
-    """Normalize the data to be between 0 and 1"""
-    return (value - data.min()) / (data.max() - data.min())
-
-
-def denormalize_data(value, data):
-    """Denormalize the data to get the actual value"""
-    return (value * (data.max() - data.min())) + data.min()
-
-
-def plot_graph(X_norm, theta0, theta1, X, y):
-    """Plot the graph with the best fit line"""
-    plt.scatter(X, y, color='red')
-    y_pred = estimate_price(X_norm, theta0, theta1)
-    y_denomralized = denormalize_data(y_pred, y)
-    plt.plot(X, y_denomralized, color='blue')
-    plt.xlabel('Mileage')
-    plt.ylabel('Price')
-    plt.title('Best fit line')
-    plt.show()
-
-
-def print_result(price):
-    """Print the estimated price of the car"""
-    # After a certain mileage, price will be zero
-    if price < 0:
-        price = 0
-    print("Estimated price from trained model: {:.2f}".format(price))
-    print("--------------------------------------------")
-
-
-def r_sqaured(X, y, theta0, theta1, X_norm):
-    """Calculate the R-squared value/Coefficient of determination
-    formula: 1 - (SSR/SST)
-    SSR: sum of squared residuals (sum of squared errors)
-    SST: total sum of squares (sum of squared deviations from the mean)
-    """
-    y_mean = np.mean(y)
-    y_pred = estimate_price(X_norm, theta0, theta1)
-    denorm_y_pred = denormalize_data(y_pred, y)
-    ssr = sum((y - denorm_y_pred) ** 2)
-    sst = sum((y - y_mean) ** 2)
-    r_square = 1 - (ssr / sst)
-    print("R-square: ", r_square)
-    print("--------------------------------------------")
 
 
 def train_model(path_to_csv_file, mil):
@@ -119,8 +81,13 @@ def train_model(path_to_csv_file, mil):
         X_norm = normalize_data(X, X)
         y_norm = normalize_data(y, y)
 
+        # setting up the subplots
+        fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
         # Training model using gradient descent to get optimal theta0 & theta1
-        theta0, theta1 = gradient_descent(X_norm, y_norm)
+        theta0, theta1 = gradient_descent(X_norm, y_norm, ax[0])
+        # for animated gradient descent  refer NOTE1
+        # theta0, theta1 = gradient_descent_animation(X_norm, y_norm)
 
         # Normalizing the mileage value to be between 0 and 1
         normalised_mil = normalize_data(mil, X)
@@ -134,7 +101,8 @@ def train_model(path_to_csv_file, mil):
         r_sqaured(X, y, theta0, theta1, X_norm)
 
         # plot the graph
-        plot_graph(X_norm, theta0, theta1, X, y)
+        plot_graph(X_norm, theta0, theta1, X, y, ax[1])
+        plt.show()
 
     except Exception as e:
         print(type(e).__name__ + ": " + str(e))
@@ -142,3 +110,15 @@ def train_model(path_to_csv_file, mil):
     except KeyboardInterrupt:
         print("Exiting...")
         exit(1)
+
+
+"""
+NOTE1:
+For animated gradient descent, use the following code:
+    theta0, theta1 = gradient_descent_animation(X_norm, y_norm)
+
+    When using this comment out the following LINES in the above code:
+    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+    theta0, theta1 = gradient_descent(X_norm, y_norm, ax[0])
+    plot_graph(X_norm, theta0, theta1, X, y, ax[1])
+"""

@@ -1,5 +1,6 @@
 
-from train import train_model, estimate_price
+from train import train_model
+from utils import estimate_price
 
 
 def predict():
