@@ -1,6 +1,7 @@
 import numpy as np
 from utils import estimate_price, denormalize_data
 
+
 def r_sqaured(X, y, theta0, theta1, X_norm):
     """Calculate the R-squared value/Coefficient of determination
     formula: 1 - (SSR/SST)

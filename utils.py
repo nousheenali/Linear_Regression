@@ -1,6 +1,4 @@
 
-import matplotlib.pyplot as plt
-
 # default values for theta0 and theta1 are 0
 def estimate_price(mileage, theta0=0, theta1=0):
     """

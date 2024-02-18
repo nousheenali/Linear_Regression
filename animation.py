@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 from utils import estimate_price
-from matplotlib.animation import FuncAnimation  # for creating animated plots in Matplotlib
-
+# for creating animated plots in Matplotlib
+from matplotlib.animation import FuncAnimation
 """
 Use this function to have an animated plot of the gradient descent process.
 """
+
 
 def gradient_descent_animation(x, y):
     """
@@ -18,12 +19,14 @@ def gradient_descent_animation(x, y):
     num_iters = 100  # number of iterations
     m = len(y)  # number of data points
     learning_rate = 0.9  # hyperparameter
+    loss = 0
 
     fig, ax = plt.subplots()
     ax.scatter(x, y, color='red')  # Plot normalised data points
     ax.set_xlabel('Normalised Mileage')
     ax.set_ylabel('Normalised Price')
-    ax.set_title('Best Fit lines for different Gradient Descent iterations', fontsize=10)
+    ax.set_title(
+        'Best Fit lines for different Gradien Descent iterations', fontsize=10)
     # create an empty green line that will be updated in the animation
     # (Refer to NOTE1 for explanation of parameters)
     line, = ax.plot([], [], color='green', lw=2)  # lw - line width
@@ -39,7 +42,7 @@ def gradient_descent_animation(x, y):
         It calculates the predicted values, updates the green line,
         and adjusts the parameters theta0 and theta1.
         """
-        nonlocal theta0, theta1
+        nonlocal theta0, theta1, loss
 
         y_pred = estimate_price(x, theta0, theta1)
         loss = (1/m) * sum([val**2 for val in (y - y_pred)])
@@ -53,15 +56,19 @@ def gradient_descent_animation(x, y):
         theta0 = theta0 - tmp_theta0
         theta1 = theta1 - tmp_theta1
 
-        print("Iteration: {}, theta0: {:.4f}, theta1: {:.4f}, loss: {:.4f}".format(frame, theta0, theta1, loss))
+        print("Iteration: {}, theta0: {:.4f}, theta1: {:.4f}, loss: {:.4f}"
+              .format(frame, theta0, theta1, loss))
 
         return line,
 
     # Create the animation(refers to NOTE2 for explanation of parameters)
-    ani = FuncAnimation(fig, update, frames=num_iters, init_func=init, blit=True)
+    ani = FuncAnimation(
+        fig, update, frames=num_iters, init_func=init, blit=True)
     plt.show()
+    print(ani)  # to avoid unused error by falke8
 
-    print("Final values - theta0: {:.4f}, theta1: {:.4f}, loss: {:.4f}".format(theta0, theta1, loss))
+    print("Final values - theta0: {:.4f}, theta1: {:.4f}, loss: {:.4f}"
+          .format(theta0, theta1, loss))
     return theta0, theta1
 
 
@@ -80,7 +87,8 @@ it would result in an error because line would be a list, not a Line2D object.
 It's a common Python idiom for unpacking a single-element tuple or list.
 
 example of Line2D object:
-line = Line2D([0, 1, 2], [0, 1, 0], color='blue', linestyle='-', linewidth=2, marker='o', markersize=8)
+line = Line2D([0, 1, 2], [0, 1, 0], color='blue', linestyle='-',
+ linewidth=2, marker='o', markersize=8)
 
 NOTE2:
 ani = FuncAnimation(fig, update, frames=num_iters, init_func=init, blit=True)
@@ -88,7 +96,7 @@ fig - The figure to be animated
 Update - The function that is called at each frame of the animation
 frames - The number of frames to be created
 init_func - The function used to draw a clear frame
-blit - Whether blitting is used to optimize drawing. 
+blit - Whether blitting is used to optimize drawing.
 If blit=True, only the parts of the figure that have changed are redrawn.
 
 

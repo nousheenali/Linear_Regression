@@ -9,7 +9,7 @@ from utils import (
     plot_graph,
     print_result
 )
-from animation import gradient_descent_animation
+# from animation import gradient_descent_animation
 
 
 def gradient_descent(x, y, ax0):
