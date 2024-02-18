@@ -110,6 +110,12 @@ formula for R-squared:
         sum of squared differences from the mean = sum((actual - mean) ** 2)
 
 
+#### HOW GRADIENT DESCENT ALGORITHM ITERATES THROUGH DIFFERENT COEFFICIENT VALUES TO FIND BEST FIT LINE
+
+![GradientDescent](https://github.com/nousheenali/Linear_Regression/assets/66158938/8ed212f8-0395-4acb-b1cb-19a72b992317)
+
+
+
 REFERENCES:
 - [Everything you need to Know about Linear Regression!](https://www.analyticsvidhya.com/blog/2021/10/everything-you-need-to-know-about-linear-regression/)
 - [Linear Regression](https://www.youtube.com/watch?v=nk2CQITm_eo)
